@@ -32,11 +32,12 @@ Please refer this [link][link-askubuntu]
 * Install your *.run file: ```sudo bash *.run```
 * Reboot: ```sudo reboot```
 
+## Change a mirror (to a JAIST server)
+```sudo sed -i s/kr.archive.ubuntu.com/ftp.jaist.ac.jp/g /etc/apt/sources.list```
+
 [link-askubuntu]: http://askubuntu.com/questions/149206/how-to-install-nvidia-run
 [link-cuda-repo]: https://hub.docker.com/r/nvidia/cuda/
 [link-docker-guide]: https://docs.docker.com/engine/installation/linux/ubuntulinux/
 [link-dl-docker]: https://github.com/saiprashanths/dl-docker
 [link-dl-setup]: https://github.com/saiprashanths/dl-setup
-
-## Change a mirror (to a JAIST server)
-```sudo sed -i s/kr.archive.ubuntu.com/ftp.jaist.ac.jp/g /etc/apt/sources.list```
+[link-torch-hdf5]: https://github.com/deepmind/torch-hdf5
