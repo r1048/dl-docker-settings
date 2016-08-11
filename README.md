@@ -11,7 +11,7 @@ scripts and guide to easily setup the environment
 * Get install scripts on this repository: ```git clone https://github.com/r1048/dl-docker-settings```
 * Install packages according to the README and scripts
 
-### Build a docker image for cuda*-cudnn*-devel based on ubuntu/16.04
+### Build a docker image for cuda\*-cudnn\*-devel based on ubuntu/16.04
 * 
 
 ## Useful resources
