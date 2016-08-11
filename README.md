@@ -22,3 +22,6 @@ Please refer this [link][link-askubuntu]
 [link-docker-guide]: https://docs.docker.com/engine/installation/linux/ubuntulinux/
 [link-dl-docker]: https://github.com/saiprashanths/dl-docker
 [link-dl-setup]: https://github.com/saiprashanths/dl-setup
+
+## Change a mirror (to a JAIST server)
+```sudo sed -i s/kr.archive.ubuntu.com/ftp.jaist.ac.jp/g /etc/apt/sources.list```
