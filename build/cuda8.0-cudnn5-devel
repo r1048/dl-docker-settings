@@ -1,0 +1,71 @@
+FROM ubuntu:16.04
+MAINTAINER NVIDIA CORPORATION <digits@nvidia.com>
+
+LABEL com.nvidia.volumes.needed="nvidia_driver"
+
+# install prerequisites
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV CUDA_VERSION 8.0
+ENV CUDNN_VERSION 5
+LABEL com.nvidia.cuda.version="8.0"
+LABEL com.nvidia.cudnn.version="5"
+
+ENV CUDA_PKG_VERSION 8-0=8.0.27-1
+RUN curl -o cuda-repo.deb http://developer.download.nvidia.com/compute/cuda/8.0/direct/cuda-repo-ubuntu1604-8-0-rc_8.0.27-1_amd64.deb
+RUN dpkg -i cuda-repo.deb && \
+    rm cuda-repo.deb && \
+    apt-get update && apt-get install -y --no-install-recommends \
+        cuda-nvrtc-$CUDA_PKG_VERSION \
+        cuda-nvgraph-$CUDA_PKG_VERSION \
+        cuda-cusolver-$CUDA_PKG_VERSION \
+        cuda-cublas-$CUDA_PKG_VERSION \
+        cuda-cufft-$CUDA_PKG_VERSION \
+        cuda-curand-$CUDA_PKG_VERSION \
+        cuda-cusparse-$CUDA_PKG_VERSION \
+        cuda-npp-$CUDA_PKG_VERSION \
+        cuda-cudart-$CUDA_PKG_VERSION && \
+        cuda-core-$CUDA_PKG_VERSION \
+        cuda-misc-headers-$CUDA_PKG_VERSION \
+        cuda-command-line-tools-$CUDA_PKG_VERSION \
+        cuda-nvrtc-dev-$CUDA_PKG_VERSION \
+        cuda-nvml-dev-$CUDA_PKG_VERSION \
+        cuda-nvgraph-dev-$CUDA_PKG_VERSION \
+        cuda-cusolver-dev-$CUDA_PKG_VERSION \
+        cuda-cublas-dev-$CUDA_PKG_VERSION \
+        cuda-cufft-dev-$CUDA_PKG_VERSION \
+        cuda-curand-dev-$CUDA_PKG_VERSION \
+        cuda-cusparse-dev-$CUDA_PKG_VERSION \
+        cuda-npp-dev-$CUDA_PKG_VERSION \
+        cuda-cudart-dev-$CUDA_PKG_VERSION \
+        cuda-driver-dev-$CUDA_PKG_VERSION && \
+    ln -s cuda-$CUDA_VERSION /usr/local/cuda && \
+    apt-get remove --purge -y cuda-repo-ubuntu1604-8-0-rc && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN echo "/usr/local/cuda/lib" >> /etc/ld.so.conf.d/cuda.conf && \
+    echo "/usr/local/cuda/lib64" >> /etc/ld.so.conf.d/cuda.conf && \
+    ldconfig
+
+RUN echo "/usr/local/nvidia/lib" >> /etc/ld.so.conf.d/nvidia.conf && \
+    echo "/usr/local/nvidia/lib64" >> /etc/ld.so.conf.d/nvidia.conf
+
+# add paths
+ENV PATH /usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH}
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64:${LD_LIBRARY_PATH}
+ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs:${LIBRARY_PATH}
+
+# apply a patch for latest gcc
+RUN curl -o cuda-patch.deb http://developer.download.nvidia.com/compute/cuda/8.0/direct/cuda-misc-headers-8-0_8.0.27.1-1_amd64.deb
+RUN dpkg -i cuda-patch.deb
+RUN rm -rf cuda-patch.deb
+
+ENV CUDNN_DOWNLOAD_SUM af80eb1ce0cb51e6a734b2bdc599e6d50b676eab3921e5bddfe5443485df86b6
+RUN curl http://developer.download.nvidia.com/compute/redist/cudnn/v5/cudnn-8.0-linux-x64-v5.0-ga.tgz -O
+RUN echo "$CUDNN_DOWNLOAD_SUM  cudnn-8.0-linux-x64-v5.0-ga.tgz" | sha256sum -c --strict - && \
+    tar -xzf cudnn-8.0-linux-x64-v5.0-ga.tgz -C /usr/local && \
+    rm cudnn-8.0-linux-x64-v5.0-ga.tgz && \
+    ldconfig
