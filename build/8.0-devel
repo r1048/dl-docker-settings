@@ -23,6 +23,7 @@ RUN dpkg -i cuda-repo.deb && \
 
 ENV LIBRARY_PATH /usr/local/cuda/lib64/stubs:${LIBRARY_PATH}
 
+# apply a patch for latest gcc
 RUN curl -o cuda-patch.deb http://developer.download.nvidia.com/compute/cuda/8.0/direct/cuda-misc-headers-8-0_8.0.27.1-1_amd64.deb
 RUN dpkg -i cuda-patch.deb
 RUN rm -rf cuda-patch.deb
