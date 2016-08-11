@@ -2,8 +2,10 @@
 scripts and guide to easily setup the environment
 
 ## Useful resources
-* [NVIDIA CUDA docker repository][link-cuda-repo]
+* [NVIDIA CUDA Docker Repository][link-cuda-repo]
 * [Docker Installation Guide][link-docker-guide]
+* [All-in-one Docker Image for Deep Learning][link-dl-docker]
+* [Setting up a Deep Learning Machine from Scratch][link-dl-setup]
 
 ## Install NVIDIA driver
 Please refer this [link][link-askubuntu]
@@ -18,3 +20,5 @@ Please refer this [link][link-askubuntu]
 [link-askubuntu]: http://askubuntu.com/questions/149206/how-to-install-nvidia-run
 [link-cuda-repo]: https://hub.docker.com/r/nvidia/cuda/
 [link-docker-guide]: https://docs.docker.com/engine/installation/linux/ubuntulinux/
+[link-dl-docker]: https://github.com/saiprashanths/dl-docker
+[link-dl-setup]: https://github.com/saiprashanths/dl-setup
