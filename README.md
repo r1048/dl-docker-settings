@@ -1,19 +1,14 @@
 # dl-docker-settings
 scripts and guide to easily setup the environment
 
-## Summary of an environment setup
-1. Install docker, nvidia driver, and nvidia-docker
-2. Build a docker image for cuda\*-cudnn\*-devel based on ubuntu/16.04
-3. Build a docker image for torch based on the previous image
-
-## Detailed sequence of an environment setup
+## Sequence of an environment setup
 Note that most of scripts were slightly modified from [link-dl-docker]
 
 ### Install prerequisites: docker, nvidia driver, and nvidia-docker
 * Get install scripts on this repository: ```git clone https://github.com/r1048/dl-docker-settings```
 * Install packages according to the README and scripts
 
-### Build a docker image for cuda\*-cudnn\*-devel based on ubuntu/16.04
+### Build docker images based on ubuntu/16.04, CUDA 8.0, cudnn 5
 * Build docker images sequentially: 8.0-runtime, 8.0-devel, 8.0-cudnn5-devel and torch
 * ```sudo docker build -t r1048/${image_name}:${tag_name} -f ${dockerfile_name}```
   * ```sudo docker build -t r1048/cuda:8.0-runtime -f ~/dl-docker-settings/build/8.0-runtime```
