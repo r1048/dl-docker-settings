@@ -9,12 +9,10 @@ Note that most of scripts were slightly modified from [link-dl-docker]
 * Install packages according to the README and scripts
 
 ### Build docker images based on ubuntu/16.04, CUDA 8.0, cudnn 5
-* Build docker images sequentially: 8.0-runtime, 8.0-devel, 8.0-cudnn5-devel and torch
+* Build docker images sequentially: cuda8.0-cudnn5-devel, torch-hdf5-cudnn5
 * ```sudo docker build -t r1048/${image_name}:${tag_name} -f ${dockerfile_name}```
-  * ```sudo docker build -t r1048/cuda:8.0-runtime -f ~/dl-docker-settings/build/8.0-runtime```
-  * ```sudo docker build -t r1048/cuda:8.0-devel -f ~/dl-docker-settings/build/8.0-devel```
-  * ```sudo docker build -t r1048/cuda:8.0-cudnn5-devel -f ~/dl-docker-settings/build/8.0-cudnn5-devel```
-  * ```sudo docker build -t r1048/torch -f ~/dl-docker-settings/build/torch```
+  * ```sudo docker build -t r1048/cuda:8.0-cudnn5-devel -f ~/dl-docker-settings/build/cuda8.0-cudnn5-devel```
+  * ```sudo docker build -t r1048/torch:hdf5-cudnn5 -f ~/dl-docker-settings/build/torch-hdf5-cudnn5```
 
 ## Useful resources
 * [NVIDIA CUDA Docker Repository][link-cuda-repo]
