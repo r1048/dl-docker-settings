@@ -3,7 +3,7 @@ scripts and guide to easily setup the environment
 
 ## Summary of an environment setup
 1. Install docker, nvidia driver, and nvidia-docker
-2. Build a docker image for cuda*-cudnn*-devel based on ubuntu/16.04
+2. Build a docker image for cuda\*-cudnn\*-devel based on ubuntu/16.04
 3. Build a docker image for torch based on the previous image
 
 ## Detailed sequence of an environment setup
@@ -12,7 +12,11 @@ scripts and guide to easily setup the environment
 * Install packages according to the README and scripts
 
 ### Build a docker image for cuda\*-cudnn\*-devel based on ubuntu/16.04
-* 
+* Build docker images sequentially: 8.0-runtime, 8.0-devel, 8.0-cudnn5-devel
+* ```sudo docker build -t r1048/${image_name}:${tag_name} -f ${dockerfile_name}```
+  * ```sudo docker build -t r1048/cuda:8.0-runtime -f ~/dl-docker-settings/build/8.0-runtime```
+  * ```sudo docker build -t r1048/cuda:8.0-devel -f ~/dl-docker-settings/build/8.0-devel```
+  * ```sudo docker build -t r1048/cuda:8.0-cudnn5-devel -f ~/dl-docker-settings/build/8.0-cudnn5-devel```
 
 ## Useful resources
 * [NVIDIA CUDA Docker Repository][link-cuda-repo]
