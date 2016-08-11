@@ -7,9 +7,12 @@ scripts and guide to easily setup the environment
 3. Build a docker image for torch based on the previous image
 
 ## Detailed sequence of an environment setup
-### Install docker, nvidia driver, and nvidia-docker
+### Install prerequisites: docker, nvidia driver, and nvidia-docker
 * Get install scripts on this repository: ```git clone https://github.com/r1048/dl-docker-settings```
-* Install with scripts sequentially
+* Install packages according to the README and scripts
+
+### Build a docker image for cuda*-cudnn*-devel based on ubuntu/16.04
+* 
 
 ## Useful resources
 * [NVIDIA CUDA Docker Repository][link-cuda-repo]
