@@ -10,8 +10,8 @@ echo deb https://apt.dockerproject.org/repo ubuntu-xenial main | sudo tee -a /et
 # install prerequisites and docker
 sudo apt-get update
 sudo apt-get purge lxc-docker
-sudo apt-get install linux-image-extra-$(uname -r) -y --no-install-recommends
-sudo apt-get install apparmor docker-engine -y --no-install-recommends
+sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual -y --no-install-recommends
+sudo apt-get install docker-engine -y --no-install-recommends
 
 # start docker and run a hello-world image
 sudo service docker start
